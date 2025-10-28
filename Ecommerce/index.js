@@ -1,5 +1,5 @@
 let errorparagraph=document.getElementById("error");
-console.log(errorparagraph)
+// console.log(errorparagraph)
 
 function purchase(){
     console.log("Button clicked");
