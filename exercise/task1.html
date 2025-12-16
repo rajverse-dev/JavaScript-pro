@@ -1,0 +1,11 @@
+<h1>Printer</h1>
+<input id="text" onkeyup="print()">
+<h1 id="res"></h1>
+<script>
+    var sentence=document.getElementById("text");
+    var Result=document.getElementById('res');
+    function print(){
+        Result.textContent=sentence.value
+        console.log(Result)
+    }
+</script>
