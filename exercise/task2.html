@@ -1,0 +1,20 @@
+<button onclick="update()"> Raj </button>
+<h1 id="res"></h1>
+<script>
+    var Result=document.getElementById("res");
+    function update(){
+        //create new element
+        var newele=document.createElement("h1")
+        newele.textContent="Raj..."
+        Result.append(newele)
+    }
+</script>
+
+<button id="btn" onclick="change()">Change color</button>
+<script>
+    var button=document.getElementById("btn")
+    function change(){
+        button.style.backgroundColor="Green"
+    }
+</script>
+
