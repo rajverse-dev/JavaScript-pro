@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Simple To-Do List</title>
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            li{
+                cursor: pointer;
+            }
+        </style>    
+    </head>
+    <body>
+        <h1>My To-Do List</h1>
+
+        <input type="text" id="taskip" placeholder="Enter a task">
+        <button onclick="addtask()">Add</button>
+        <ul id="taskList"></ul>
+
+        <script>
+            function addtask(){
+             var tasktext= document.getElementById("taskInput").value;
+
+            if(tasktext==''){
+                alert("Please enter a task")
+            }
+
+            var li=document.createElement("li")
+            li.textContent=tasktext
+
+            li.onclick=function(){
+                li.remove();
+            }
+            document.getElementById("taskList").appendChild(li);
+            document.getElementById("taskInput").value='';
+
+            }
+           
+
+
+        </script>
+    </body>
+</html>
