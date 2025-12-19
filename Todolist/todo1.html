@@ -11,7 +11,7 @@
     var input=document.getElementById("ip")
     function add(){
         var listitem=document.createElement("li")
-        listitem.innerHTML=ip.value +"<button onclick='deleteitem(event)'>Delete</button>"
+        listitem.innerHTML=input.value +"<button onclick='deleteitem(event)'>Delete</button>"
         ul.append(listitem)
     }
 
