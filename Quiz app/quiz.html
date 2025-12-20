@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>Simple Quiz App</title>
+        <style>
+            body{
+                font-family: Arial;
+                padding: 20px;
+            }
+
+            button{
+                margin: 5px 0;
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Simple Quiz</h1>
+        <div id="quiz">
+            <p id="question"></p>
+
+            <button onclick="checkAnswer(0)" id="opt0"></button>
+            <button onclick="checkAnswer(1)" id="opt1"></button>
+            <button onclick="checkAnswer(2)" id="opt2"></button>
+            <button onclick="checkAnswer(3)" id="opt3"></button>
+        </div>
+
+        <p id="score"></p>
+
+        <script>
+            var questions=[
+                {
+                    question: "Which language runs in browser?",
+                    options:["python","java","C","javaScript"],
+                    answer:3
+                },
+                {
+                    question: "Whis is the simplest language?",
+                    options:["python","java","C","javaScript"],
+                    answer:0
+                },
+                {
+                    question: "HTML stands for?",
+                    options: ["HighText Machine Language", "HyperText Markup Language", "Hyper Tool Language", "None"],
+                    answer: 1
+        } 
+
+            ]
+
+            var currentquestion=0
+            var score=0
+
+            var questionEl=document.getElementById("question")
+            var options=[
+                document.getElementById("opt0"),
+                document.getElementById("opt1"),
+                document.getElementById("opt2"),
+                document.getElementById("opt3"),
+            ]
+
+            var scoreEl=document.getElementById("score")
+
+            function loadQuestion(){
+                var q=questions[currentquestion]
+                questionEl.innerText=q.question
+
+                for (var i=0;i<options.length;i++){
+                    options[i].innerText=q.options[i]
+                }
+
+            }
+
+
+            function checkAnswer(selected){
+                if(selected === questions[currentquestion].answer){
+                    score++
+                }
+
+                currentquestion++
+
+                if(currentquestion < questions.length){
+                    loadQuestion()
+                }
+                else{
+                    showResult()
+                }
+            }
+
+            function showResult(){
+                document.getElementById("quiz").innerHTML=""
+                scoreEl.innerText = `Your Score: ${score} / ${questions.length}`
+
+            }
+
+            loadQuestion()
+        </script>
+    </body>
+
+
+
+</html>
