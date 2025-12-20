@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+        input {
+            margin: 5px;
+        }
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Expense Tracker</h2>
+
+<input type="text" id="name" placeholder="Expense name">
+<input type="number" id="amount" placeholder="Amount">
+<button onclick="addExpense()">Add</button>
+
+<h3>Expenses</h3>
+<ul id="list"></ul>
+
+<h3>Total: ₹<span id="total">0</span></h3>
+
+<script>
+    var expenses = JSON.parse(localStorage.getItem("expenses")) || []
+
+    var listEl = document.getElementById("list")
+    var totalEl = document.getElementById("total")
+
+    function addExpense() {
+        var name = document.getElementById("name").value
+        var amount = Number(document.getElementById("amount").value)
+
+        if (name === "" || amount === 0) {
+            alert("Enter valid expense")
+            return
+        }
+
+        var expense = {
+            name: name,
+            amount: amount
+        }
+
+        expenses.push(expense)
+        saveAndRender()
+
+        document.getElementById("name").value = ""
+        document.getElementById("amount").value = ""
+    }
+
+    function deleteExpense(index) {
+        expenses = expenses.filter((_, i) => i !== index)
+        saveAndRender()
+    }
+
+    function saveAndRender() {
+        localStorage.setItem("expenses", JSON.stringify(expenses))
+        renderList()
+        calculateTotal()
+    }
+
+    function renderList() {
+        listEl.innerHTML = ""
+
+        expenses.forEach((exp, index) => {
+            var li = document.createElement("li")
+            li.innerHTML = `${exp.name} - ₹${exp.amount} 
+                <button onclick="deleteExpense(${index})">Delete</button>`
+            listEl.appendChild(li)
+        })
+    }
+
+    function calculateTotal() {
+        var total = expenses.reduce((sum, exp) => sum + exp.amount, 0)
+        totalEl.innerText = total
+    }
+
+    renderList()
+    calculateTotal()
+</script>
+
+</body>
+</html>
