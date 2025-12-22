@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Filter App</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        input {
+            padding: 8px;
+            width: 250px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Search Filter App</h1>
+
+    <input type="text" id="search" placeholder="Search items..." onkeyup="filteritems()">
+    <ul id="list"></ul>
+
+    <script>
+        var items = [
+            "JavaScript", "Java", "Python", "C", "C++",
+            "HTML", "React", "Angular", "Node.js", "CSS",
+            "TypeScript", "Ruby"
+        ]
+
+        var listel = document.getElementById('list')
+        var searchel = document.getElementById('search')
+
+        displayItems(items)
+
+        function filteritems() {
+            var searchtext = searchel.value.toLowerCase()
+
+            var filteredItems = items.filter(item =>
+                item.toLowerCase().includes(searchtext)
+            )
+
+            displayItems(filteredItems)
+        }
+
+        function displayItems(data) {
+            listel.innerHTML = ''
+
+            data.forEach(item => {
+                var li = document.createElement('li') // ✅ FIX
+                li.innerText = item
+                listel.appendChild(li)
+            })
+        }
+    </script>
+</body>
+</html>
