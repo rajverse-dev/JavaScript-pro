@@ -1,0 +1,31 @@
+[
+  { "name": "Arun", "section": "A", "subject": "Maths", "marks": 78 },
+  { "name": "Bala", "section": "A", "subject": "Maths", "marks": 85 },
+  { "name": "Charan", "section": "B", "subject": "Maths", "marks": 72 },
+  { "name": "Deepak", "section": "B", "subject": "Maths", "marks": 90 },
+  { "name": "Ezhil", "section": "C", "subject": "Maths", "marks": 88 },
+  { "name": "Farooq", "section": "D", "subject": "Maths", "marks": 76 },
+
+  { "name": "Arun", "section": "A", "subject": "Python", "marks": 82 },
+  { "name": "Bala", "section": "A", "subject": "Python", "marks": 88 },
+  { "name": "Charan", "section": "B", "subject": "Python", "marks": 75 },
+  { "name": "Deepak", "section": "B", "subject": "Python", "marks": 92 },
+  { "name": "Ezhil", "section": "C", "subject": "Python", "marks": 85 },
+  { "name": "Farooq", "section": "D", "subject": "Python", "marks": 70 },
+
+  { "name": "Arun", "section": "A", "subject": "java", "marks": 80 },
+  { "name": "Bala", "section": "A", "subject": "java", "marks": 86 },
+  { "name": "Charan", "section": "B", "subject": "java", "marks": 76 },
+  { "name": "Deepak", "section": "B", "subject": "java", "marks": 90 },
+  { "name": "Ezhil", "section": "C", "subject": "java", "marks": 85 },
+  { "name": "Farooq", "section": "D", "subject": "java", "marks": 90 },
+  
+  { "name": "Arun", "section": "A", "subject": "JavaScript", "marks": 88 },
+  { "name": "Bala", "section": "A", "subject": "JavaScript", "marks": 85 },
+  { "name": "Charan", "section": "B", "subject": "JavaScript", "marks": 92 },
+  { "name": "Deepak", "section": "B", "subject": "JavaScript", "marks": 90 },
+  { "name": "Ezhil", "section": "C", "subject": "JavaScript", "marks": 78 },
+  { "name": "Farooq", "section": "D", "subject": "JavaScript", "marks": 86 }
+
+
+]

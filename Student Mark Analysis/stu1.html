@@ -2,141 +2,38 @@
 <html>
 <head>
     <title>Student Marks Analysis</title>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+    <script defer src="app.js"></script>
+
     <style>
-        body {
-            font-family: Arial;
-            padding: 20px;
-        }
-        input, select, button {
-            margin: 5px;
-            padding: 5px;
-        }
-        table {
-            margin-top: 15px;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 6px;
-        }
-        .result {
-            margin-top: 15px;
-            font-weight: bold;
-            color: green;
-        }
+        body { font-family: Arial; padding: 20px; }
+        select, button { padding: 5px; margin: 5px; }
+        canvas { max-width: 600px; }
     </style>
 </head>
 <body>
 
-<h2>Student Marks Entry</h2>
-
-<input id="name" placeholder="Student Name">
-
-<select id="section">
-    <option>A</option>
-    <option>B</option>
-    <option>C</option>
-    <option>D</option>
-</select>
+<h2>Student Marks Analysis</h2>
 
 <select id="subject">
     <option>Maths</option>
     <option>Python</option>
-    <option>Java</option>
+    <option>java</option>
     <option>JavaScript</option>
+    
 </select>
 
-<input id="marks" type="number" placeholder="Marks">
+<button id="analyzeBtn">Analyze</button>
 
-<button onclick="addStudent()">Add</button>
+<p id="result"></p>
 
-<h3>Student Records</h3>
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Section</th>
-            <th>Subject</th>
-            <th>Marks</th>
-        </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-</table>
-
-<br>
-<button onclick="analyze()">Analyze Performance</button>
-
-<div class="result" id="result"></div>
-
-<script>
-    
-    var students = [];
-
-    function addStudent() {
-        var student = {
-            name: document.getElementById("name").value,
-            section: document.getElementById("section").value,
-            subject: document.getElementById("subject").value,
-            marks: Number(document.getElementById("marks").value)
-        };
-
-        students.push(student);
-        displayTable();
-        clearInputs();
-    }
-
-    function displayTable() {
-        var tbody = document.getElementById("tableBody");
-        tbody.innerHTML = "";
-
-        students.forEach(s => {
-            var row = `<tr>
-                <td>${s.name}</td>
-                <td>${s.section}</td>
-                <td>${s.subject}</td>
-                <td>${s.marks}</td>
-            </tr>`;
-            tbody.innerHTML += row;
-        });
-    }
-
-    function analyze() {
-        var subject = document.getElementById("subject").value;
-
-        var sectionTotal = { A: 0, B: 0, C: 0,D: 0 };
-        var sectionCount = { A: 0, B: 0, C: 0, D: 0};
-
-        students.forEach(s => {
-            if (s.subject === subject) {
-                sectionTotal[s.section] += s.marks;
-                sectionCount[s.section]++;
-            }
-        });
-
-        var bestSection = "";
-        var bestAvg = 0;
-
-        for (var sec in sectionTotal) {
-            if (sectionCount[sec] > 0) {
-                var avg = sectionTotal[sec] / sectionCount[sec];
-                if (avg > bestAvg) {
-                    bestAvg = avg;
-                    bestSection = sec;
-                }
-            }
-        }
-
-        document.getElementById("result").innerText =
-            "Best performing section in " + subject +
-            " is Section " + bestSection +
-            " (Average: " + bestAvg.toFixed(2) + ")";
-    }
-
-    function clearInputs() {
-        document.getElementById("name").value = "";
-        document.getElementById("marks").value = "";
-    }
-</script>
+<canvas id="chart"></canvas>
 
 </body>
 </html>
+
+
