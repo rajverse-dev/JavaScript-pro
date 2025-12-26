@@ -1,0 +1,30 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 90%;
+    margin: auto;
+    background: #f2f7ff;
+}
+h1, h2{ 
+    text-align: center;
+}
+#form-section {
+    display: flex; gap: 10px auto; justify-content: center;
+}
+input,select,button{
+    padding: 8px;
+}
+table{
+    width: 100%;border-collapse: collapse;
+}
+td, th{
+    border: 1px solid #aaa;
+}
+button {
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    border: none;
+}
+button:hover{
+    background: #0056b3;
+}
