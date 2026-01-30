@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Toogle Theme</title>
+
+        <style>
+
+            body{
+                font-family:Arial;
+                text-align: center;
+                margin-top: 100px;;
+                transition: 0.3s;
+            }
+
+            .dark{
+                background-color: #222;
+                color: white;
+            }
+
+            button{
+                padding: 12px 25px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1 id="title">Light Mode</h1>
+
+        <button id="btn">Switch Mode</button>
+    </body>
+
+    <script>
+        let body=document.body;
+        let title=document.getElementById("title");
+        let btn=document.getElementById("btn");
+
+        btn.addEventListener("click",function(){
+            body.classList.toggle("dark");
+
+            if(body.classList.contains("dark")){
+                title.textContent="Dark Mode";
+            }
+            else{
+                title.textContent="Light Mode";
+            }
+        })
+
+    </script>
+</html>

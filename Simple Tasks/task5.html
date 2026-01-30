@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>JS DOM</title>
+
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+                margin-top: 100px;
+            }
+
+            #text{
+                font-size: 25px;;
+                margin-top: 20px;
+                color: black;
+            }
+
+            button{
+                padding: 10px 20px;
+                font-size: 16px;
+                color: blue;
+            }
+        </style>
+    </head>
+
+    <body>
+        <p id="text">Hello click the button</p>
+        <button id="btn">Clikck Me</button>
+    </body>
+
+    <script>
+        
+        let text=document.getElementById("text");
+        let btn=document.getElementById("btn");
+
+        let count=0;
+
+        btn.addEventListener("click",function(){
+            count++;
+            if(count===1){
+                text.textContent="Clicked first time";
+                text.style.color="blue";
+                btn.style.color="blue";
+            }
+            else if(count===2){
+                text.textContent="Clicked 2nd time";
+                text.style.color='green';
+                btn.style.color="green";
+            }
+            else{
+                text.textContent="Clicked 3 time";
+                text.style.color="yellow";
+                btn.style.color="yellow";
+
+            }
+
+        })
+    </script>
+</html>
