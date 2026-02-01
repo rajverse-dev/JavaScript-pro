@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Todo App</title>
+
+<style>
+
+    body{
+        font-family: Arial;
+        background:#f4f4f4;
+        display:flex;
+        justify-content:center;
+        margin-top:100px;
+    }
+
+    .todo-box{
+        background:white;
+        width:350px;
+        padding:20px;
+        border-radius:10px;
+        box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2{
+        text-align:center;
+    }
+
+    .input-box{
+        display:flex;
+        gap:10px;
+        margin-bottom:20px;
+    }
+
+    input{
+        flex:1;
+        padding:8px;
+        font-size:16px;
+    }
+
+    button{
+        padding:8px 12px;
+        cursor:pointer;
+    }
+
+    ul{
+        list-style:none;
+        padding:0;
+    }
+
+    li{
+        background:#eee;
+        padding:10px;
+        margin-bottom:8px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        border-radius:5px;
+        cursor:pointer;
+    }
+
+    li.done{
+        text-decoration:line-through;
+        color:gray;
+        background:#ddd;
+    }
+
+    .delete{
+        background:red;
+        color:white;
+        border:none;
+        padding:5px 8px;
+        border-radius:3px;
+        cursor:pointer;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="todo-box">
+
+    <h2>📝 My Todo List</h2>
+
+    <div class="input-box">
+        <input id="task" type="text" placeholder="Enter task...">
+        <button id="addBtn">Add</button>
+    </div>
+
+    <ul id="list"></ul>
+
+</div>
+
+
+<script>
+
+    let input = document.getElementById("task");
+    let addBtn = document.getElementById("addBtn");
+    let list = document.getElementById("list");
+
+
+    // Add Task
+    addBtn.addEventListener("click", function(){
+
+        let task = input.value.trim();
+
+        if(task === ""){
+            alert("Enter a task!");
+            return;
+        }
+
+        // Create li
+        let li = document.createElement("li");
+        li.textContent = task;
+
+        // Create delete button
+        let delBtn = document.createElement("button");
+        delBtn.textContent = "❌";
+        delBtn.className = "delete";
+
+        // Add delete button inside li
+        li.appendChild(delBtn);
+
+        // Add li to list
+        list.appendChild(li);
+
+        // Clear input
+        input.value = "";
+
+    });
+
+
+    // Mark done / Delete (Event Delegation)
+    list.addEventListener("click", function(e){
+
+        // Delete
+        if(e.target.classList.contains("delete")){
+            e.target.parentElement.remove();
+        }
+
+        // Mark Done
+        else if(e.target.tagName === "LI"){
+            e.target.classList.toggle("done");
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
