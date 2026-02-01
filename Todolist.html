@@ -103,6 +103,7 @@
     // Add Task
     addBtn.addEventListener("click", function(){
 
+
         let task = input.value.trim();
 
         if(task === ""){
@@ -128,7 +129,16 @@
         // Clear input
         input.value = "";
 
+        
+
     });
+
+    //Add Task (Enter key)
+    input.addEventListener("keydown",function(e){
+        if(e.key==="Enter"){
+            addBtn.click();
+        }
+    })
 
 
     // Mark done / Delete (Event Delegation)
