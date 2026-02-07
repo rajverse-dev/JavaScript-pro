@@ -1,0 +1,238 @@
+
+<html>
+<head>
+<title>Advanced Todo App</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    margin-top:100px;
+}
+
+.todo-box{
+    background:white;
+    width:350px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+}
+
+.input-box{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+input{
+    flex:1;
+    padding:8px;
+    font-size:16px;
+}
+
+button{
+    padding:8px 12px;
+    cursor:pointer;
+}
+
+#counter{
+    text-align:center;
+    margin-bottom:15px;
+    font-weight:bold;
+}
+
+ul{
+    list-style:none;
+    padding:0;
+}
+
+li{
+    background:#eee;
+    padding:10px;
+    margin-bottom:8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+li.done{
+    text-decoration:line-through;
+    color:gray;
+    background:#ddd;
+}
+
+.delete{
+    background:red;
+    color:white;
+    border:none;
+    padding:5px 8px;
+    border-radius:3px;
+    cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="todo-box">
+
+    <h2>📝 My Todo List</h2>
+
+    <div class="input-box">
+        <input id="task" type="text" placeholder="Enter task...">
+        <button id="addBtn">Add</button>
+    </div>
+
+    <p id="counter">Total: 0 | Completed: 0 | Pending: 0</p>
+
+    <ul id="list"></ul>
+
+</div>
+
+
+<script>
+
+
+let input = document.getElementById("task");
+let addBtn = document.getElementById("addBtn");
+let list = document.getElementById("list");
+let counter = document.getElementById("counter");
+
+
+
+window.addEventListener("load", loadTodos);
+
+
+
+addBtn.addEventListener("click", function(){
+
+    let task = input.value.trim();
+
+    if(task === ""){
+        alert("Enter a task!");
+        return;
+    }
+
+    addTodo(task);
+
+    saveTodos();
+    updateCounter();
+
+    input.value = "";
+
+});
+
+
+
+input.addEventListener("keydown", function(e){
+
+    if(e.key === "Enter"){
+        addBtn.click();
+    }
+
+});
+
+
+
+
+list.addEventListener("click", function(e){
+
+  
+    if(e.target.classList.contains("delete")){
+        e.target.parentElement.remove();
+        saveTodos();
+        updateCounter();
+    }
+
+    // Mark Done
+    else if(e.target.tagName === "LI"){
+        e.target.classList.toggle("done");
+        saveTodos();
+        updateCounter();
+    }
+
+});
+
+
+
+
+function addTodo(task, completed = false){
+
+    let li = document.createElement("li");
+    li.textContent = task;
+
+    if(completed){
+        li.classList.add("done");
+    }
+
+    let delBtn = document.createElement("button");
+    delBtn.textContent = "❌";
+    delBtn.className = "delete";
+
+    li.appendChild(delBtn);
+    list.appendChild(li);
+}
+
+
+function saveTodos(){
+
+    let todos = [];
+
+    document.querySelectorAll("#list li").forEach(li => {
+
+        todos.push({
+            text: li.firstChild.textContent,
+            done: li.classList.contains("done")
+        });
+
+    });
+
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+
+
+function loadTodos(){
+
+    let data = localStorage.getItem("todos");
+
+    if(!data) return;
+
+    let todos = JSON.parse(data);
+
+    todos.forEach(todo => {
+        addTodo(todo.text, todo.done);
+    });
+
+    updateCounter();
+}
+
+
+
+
+function updateCounter(){
+
+    let total = document.querySelectorAll("#list li").length;
+
+    let completed = document.querySelectorAll("#list li.done").length;
+
+    let pending = total - completed;
+
+    counter.textContent =
+        `Total: ${total} | Completed: ${completed} | Pending: ${pending}`;
+}
+
+</script>
+
+</body>
+</html>
