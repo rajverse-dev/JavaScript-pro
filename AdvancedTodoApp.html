@@ -76,7 +76,69 @@
                 <input id="task" type="text" placeholder="Enter task ...">
                 <button id="addBtn">Add</button>    
             </div>
-            <p id="counter">Total: 0|Completed:0|Pending: 0</p>
+            <p id="counter">Total: 0 | Completed:0 | Pending: 0</p>
             <ul id="taskList"></ul>
         </div>
+        <script>
+            let input=document.getElementById('task');
+            let addBtn=document.getElementById('addBtn');
+            let list=document.getElementById('taskList');
+            let counter=document.getElementById('counter');
+
+            window.addEventListener('load',loadTodos);
+            addBtn.addEventListener('click',function(){
+                let task=input.value.trim();
+                if(task===""){
+                    alert("Please enter a task");
+                    return;
+                }
+                addTodo(task);
+                saveTodos();
+                updateCounter();
+                input.value="";
+            });
+
+            input.addEventListener("keydown", function(e){
+                if(e.key==="Enter"){
+                    addBtn.click();
+                }
+            });
+
+            list.addEventListener("click",function(e){
+
+                if(e.target.classList.contains("delete")){
+                    e.targer.parentElement.remove();
+                    saveTodos();
+                    updateCounter();
+                }
+                else if(e.target.tagName==="LI"){
+                    e.target.classList.toogle("done");
+                    saveTodos();
+                    updateCounter();
+                }
+            });
+
+
+            list.addEventListener("dblclick",function(e){
+                if(e.target.tagName==="LI"){
+                    let li=e.target;
+                    let oldText=li.firstChild.textContent;
+                    let editInput=document.createElement("input");
+                    editInput.type="text";
+                    editInput.value=oldText;                
+
+                    li.firstChild.remove();
+                    li.insertBefore(editInput,li.firstChild);
+
+                    editInput.focus();
+                    
+                    editiInput
+            })
+
+
+           
+
+
+
+        </script>
 </html>
