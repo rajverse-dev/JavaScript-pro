@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Advanced Todo App</title>
+
+        <style>
+            body{
+                font-family: Arial;
+                background:#f4f4f4;
+                display:flex;
+                justify-content:center;
+                margin-top:100px;
+            }
+            .todo-box{
+                background:white;
+                width:350px;
+                padding:20px;
+                border-radius:10px;
+                box-shadow:0 0 10px rgba(0,0,0,0.1);
+            }
+            h2{
+                text-align:center;
+            }
+            .input-box{
+                display:flex;
+                gap:10px;
+                margin-bottom:15px;
+            }   
+            input{
+                flex:1;
+                padding:8px;
+                font-size:16px;
+            }
+            button{
+                padding:8px 12px;
+                cursor:pointer;
+            }
+            #counter{
+                text-align:center;
+                margin-bottom:15px;
+                font-weight:bold;
+            } 
+            ul{
+                list-style:none;
+                padding:0;
+            }
+            li{
+                background:#eee;
+                padding:10px;
+                margin-bottom:8px;
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+            }  
+            li.done{
+                text-decoration:line-through;
+                color:#888;
+                background:#ddd;
+            }  
+            .delete{
+                background:red;
+                color:white;
+                border:none;
+                padding:5px 8px;
+                cursor:pointer;
+                border-radius:5px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="todo-box">
+            <h2> My Todo List</h2>
+            <div class="input-box">
+                <input id="task" type="text" placeholder="Enter task ...">
+                <button id="addBtn">Add</button>    
+            </div>
+            <p id="counter">Total: 0|Completed:0|Pending: 0</p>
+            <ul id="taskList"></ul>
+        </div>
+</html>
